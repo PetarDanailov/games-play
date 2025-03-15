@@ -1,21 +1,23 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router'
 import './App.css'
 import Header from './components/header/Header'
 import Home from './components/home/Home'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
   return (
     <div id="box">
       <Header/>
 
         {/* <!-- Main Content --> */}
         <main id="main-content">
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+          </Routes>
         </main>
 
         {/* <!--Home Page--> */}
-       <Home/>
+       
 
         {/* <!-- Login Page ( Only for Guest users ) --> */}
         <section id="login-page" className="auth">
