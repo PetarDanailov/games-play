@@ -7,6 +7,7 @@ import Login from './components/login/login'
 import Catalogue from "./components/catalogue/Catalogue"
 import GameCreate from './components/gameCreate/gameCreate'
 import GameEdit from './components/gameEdit/GameEdit'
+import GameDetails from "./components/gameDetails/GameDetails"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/catalogue' element={<Catalogue/>}/>
             <Route path='/catalogue/create' element={<GameCreate/>}/>
             <Route path='/catalogue/edit' element={<GameEdit/>}/>
+            <Route path='/catalogue/:gameId/details' element={<GameDetails/>}/>
           </Routes>
         </main>
 

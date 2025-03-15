@@ -10,7 +10,12 @@ const getAll =  async () => {
   const games = Object.values(result);
   return games;
 }
+const getOne = async (gameId) =>{
+  return request("GET",`${baseUrl}/${gameId}`);
+  
+}
 export default {
   create,
-  getAll
+  getAll,
+  getOne
 }
