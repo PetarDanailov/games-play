@@ -1,0 +1,18 @@
+{
+  "f165a258-bf4a-49b3-b63f-c871395d0e0b": {
+      "title": "League of Legends",
+      "category": "MMO",
+      "maxLevel": "1000",
+      "imageUrl": "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-80471666c140f790f28dff68d72c384b",
+      "summary": "The best MMO created at 2009 with 5 players in each team you clash against the enemy nexus with your champions",
+      "_id": "f165a258-bf4a-49b3-b63f-c871395d0e0b"
+  },
+  "6024f40d-3373-45f3-9de4-53feed7d3275": {
+      "title": "Fortnite",
+      "category": "Battle royale",
+      "maxLevel": "100",
+      "imageUrl": "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-80471666c140f790f28dff68d72c384b",
+      "summary": "3rd person shooter for the victory royale",
+      "_id": "6024f40d-3373-45f3-9de4-53feed7d3275"
+  }
+}
