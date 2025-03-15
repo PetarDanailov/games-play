@@ -14,8 +14,12 @@ const getOne = async (gameId) =>{
   return request("GET",`${baseUrl}/${gameId}`);
   
 }
+const deleteGame = async (gameId) => {
+  return request("DELETE",`${baseUrl}/${gameId}`);
+}
 export default {
   create,
   getAll,
-  getOne
+  getOne,
+  deleteGame
 }
