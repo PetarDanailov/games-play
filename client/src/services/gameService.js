@@ -17,9 +17,13 @@ const getOne = async (gameId) =>{
 const deleteGame = async (gameId) => {
   return request("DELETE",`${baseUrl}/${gameId}`);
 }
+const editGame = async (gameId,gameData) => {
+  return request("PUT", `${baseUrl}/${gameId}`,{...gameData, _id : gameId})
+}
 export default {
   create,
   getAll,
   getOne,
-  deleteGame
+  deleteGame,
+  editGame
 }

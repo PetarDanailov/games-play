@@ -1,9 +1,16 @@
-import { Link } from "react-router";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 
-export default function Login(){
+export default function Login({onLogin}){
+  const navigate = useNavigate();
+  const loginAction = (formData) => {
+    const email = formData.get("email");
+    onLogin(email);
+    navigate('/catalogue')
+  }
   return(
     <section id="login-page" className="auth">
-    <form id="login">
+    <form id="login" action={loginAction}>
 
         <div className="container">
             <div className="brand-logo"></div>

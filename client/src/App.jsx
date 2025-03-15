@@ -8,8 +8,13 @@ import Catalogue from "./components/catalogue/Catalogue"
 import GameCreate from './components/gameCreate/gameCreate'
 import GameEdit from './components/gameEdit/GameEdit'
 import GameDetails from "./components/gameDetails/GameDetails"
+import { useState } from 'react'
 
 function App() {
+  const [email,setEmail] = useState('');
+  const userLoginHandler = (email) => {
+    setEmail(email);
+  }
   return (
     <div id="box">
       <Header/>
@@ -18,12 +23,12 @@ function App() {
         <main id="main-content">
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/login' element={<Login onLogin={userLoginHandler}/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/catalogue' element={<Catalogue/>}/>
             <Route path='/catalogue/create' element={<GameCreate/>}/>
-            <Route path='/catalogue/edit' element={<GameEdit/>}/>
-            <Route path='/catalogue/:gameId/details' element={<GameDetails/>}/>
+            <Route path='/catalogue/:gameId/edit' element={<GameEdit/>}/>
+            <Route path='/catalogue/:gameId/details' element={<GameDetails email={email}/>}/>
           </Routes>
         </main>
 
