@@ -1,16 +1,22 @@
-import { useEffect } from "react";
+import { useActionState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
+import { useLogin } from "../../api/authApi";
 
 export default function Login({onLogin}){
   const navigate = useNavigate();
-  const loginAction = (formData) => {
-    const email = formData.get("email");
-    onLogin(email);
+  const {login} = useLogin()
+  const loginHandler = async (previousState,formData) => {
+    const values = Object.fromEntries(formData)
+    const result = await login(values.email,values.password)
+    onLogin(result)
     navigate('/catalogue')
-  }
+    return values; 
+  } 
+  const [values, loginAction, isPending] = useActionState(loginHandler,{email: "", password: ""})
+  
   return(
     <section id="login-page" className="auth">
-    <form id="login" action={loginAction}>
+    <form id="login" action={loginHandler}>
 
         <div className="container">
             <div className="brand-logo"></div>
@@ -20,7 +26,7 @@ export default function Login({onLogin}){
 
             <label htmlFor="login-pass">Password:</label>
             <input type="password" id="login-password" name="password"/>
-            <input type="submit" className="btn submit" value="Login"/>
+            <input type="submit" className="btn submit" value="Login" disabled={isPending}/>
             <p className="field">
                 <span>If you don't have profile click <Link to="/register">here</Link></span>
             </p>

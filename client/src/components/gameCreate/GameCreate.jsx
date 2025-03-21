@@ -1,5 +1,5 @@
 import gameService from "../../services/gameService";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 export default function GameCreate(){
   const navigate = useNavigate();
   const sumbitFunction =  async (formData) => {

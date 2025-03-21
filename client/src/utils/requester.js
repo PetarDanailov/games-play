@@ -1,5 +1,5 @@
-export const request = async (method, url, data) => {
-  let options = {}; 
+export const request = async (method, url, data,options = {}) => {
+  
   if(method!== "GET"){
     options = {
       method,
