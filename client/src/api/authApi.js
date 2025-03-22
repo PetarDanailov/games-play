@@ -26,9 +26,16 @@ export const useRegister = () =>{
   return register 
 }
 export const useLogout = () => {
-  const {accessToken} = useContext(UserContext)
-  const logout = async() => {
-    request("GET",`${baseUrl}/logout`,null,{headers: {"X-Authorization": accessToken}})
+  const {accessToken, userLogoutHandler} = useContext(UserContext)
+  useEffect(() => {
+    if(!accessToken) {
+      return;
+    }
+    request("GET",`${baseUrl}/logout`,null,{headers: {"X-Authorization": accessToken}}).then(() => {
+      userLogoutHandler();
+    })
+  },[accessToken,userLogoutHandler])
+  return {
+    isLoggedOut: !!accessToken
   }
-  return logout
 }
