@@ -2,6 +2,7 @@ export const request = async (method, url, data,options = {}) => {
   
   if(method!== "GET"){
     options = {
+      ...options,
       method,
   };
   }
@@ -13,7 +14,6 @@ export const request = async (method, url, data,options = {}) => {
     }
   }
   try{
-
     const response = await fetch(url,options);
     const responseContentType = response.headers.get("Content-Type")
     if(!responseContentType){

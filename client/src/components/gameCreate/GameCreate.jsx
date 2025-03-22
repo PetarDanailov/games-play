@@ -1,10 +1,12 @@
+import { useCreateGame } from "../../api/gameApi";
 import gameService from "../../services/gameService";
 import { useNavigate } from "react-router";
 export default function GameCreate(){
   const navigate = useNavigate();
+  const {create} = useCreateGame()
   const sumbitFunction =  async (formData) => {
     const gameData = Object.fromEntries(formData);
-    const result = await gameService.create(gameData);
+    await create(gameData)
     navigate('/catalogue');
   } 
   return(

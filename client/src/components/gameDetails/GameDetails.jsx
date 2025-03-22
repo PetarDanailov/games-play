@@ -12,7 +12,6 @@ export default function GameDetails(){
     const {email} = useContext(UserContext)
     const [comments,setComments] = useState([]);
     const {gameId} = useParams();
-    console.log(comments)
     useEffect(() => {( 
         async() =>{
             const result = await gameService.getOne(gameId);
