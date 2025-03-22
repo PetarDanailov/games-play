@@ -1,22 +1,23 @@
-import { useActionState, useEffect } from "react";
+import { useActionState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLogin } from "../../api/authApi";
+import { UserContext } from "../../contexts/UserContext";
 
-export default function Login({onLogin}){
+export default function Login(){
   const navigate = useNavigate();
-  const {login} = useLogin()
-  const loginHandler = async (previousState,formData) => {
+  const {userLoginHandler} = useContext(UserContext)  
+  const login = useLogin();
+    const loginHandler = async (previousState,formData) => {
     const values = Object.fromEntries(formData)
     const result = await login(values.email,values.password)
-    onLogin(result)
+    userLoginHandler(result)
     navigate('/catalogue')
-    return values; 
   } 
   const [values, loginAction, isPending] = useActionState(loginHandler,{email: "", password: ""})
   
   return(
     <section id="login-page" className="auth">
-    <form id="login" action={loginHandler}>
+    <form id="login" action={loginAction}>
 
         <div className="container">
             <div className="brand-logo"></div>

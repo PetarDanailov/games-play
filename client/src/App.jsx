@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router'
 import './App.css'
+
+import { UserContext } from './contexts/UserContext'
+
 import Header from './components/header/Header'
 import Home from './components/home/Home'
 import Register from './components/register/Register'
@@ -16,6 +19,7 @@ function App() {
     setAuthData(resultData);
   }
   return (
+<UserContext.Provider value={{...authData,userLoginHandler}}>
     <div id="box">
       <Header/>
 
@@ -23,36 +27,16 @@ function App() {
         <main id="main-content">
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login onLogin={userLoginHandler}/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/catalogue' element={<Catalogue/>}/>
             <Route path='/catalogue/create' element={<GameCreate/>}/>
             <Route path='/catalogue/:gameId/edit' element={<GameEdit/>}/>
-            <Route path='/catalogue/:gameId/details' element={<GameDetails email={authData.email}/>}/>
+            <Route path='/catalogue/:gameId/details' element={<GameDetails/>}/>
           </Routes>
-        </main>
-
-        {/* <!--Home Page--> */}
-       
-
-        {/* <!-- Login Page ( Only for Guest users ) --> */}
-       
-
-        {/* <!-- Register Page ( Only for Guest users ) --> */}
-       
-
-        {/* <!-- Create Page ( Only for logged-in users ) --> */}
-        
-
-        {/* <!-- Edit Page ( Only for the creator )--> */}
-      
-
-        {/* <!--Details Page--> */}
-      
-
-        {/* <!-- Catalogue --> */}
-        
+        </main>        
     </div>
+</UserContext.Provider>
   )
 }
 
