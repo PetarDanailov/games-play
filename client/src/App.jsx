@@ -11,9 +11,9 @@ import GameDetails from "./components/gameDetails/GameDetails"
 import { useState } from 'react'
 
 function App() {
-  const [email,setEmail] = useState('');
-  const userLoginHandler = (email) => {
-    setEmail(email);
+  const [authData,setAuthData] = useState({});
+  const userLoginHandler = (resultData) => {
+    setAuthData(resultData);
   }
   return (
     <div id="box">
@@ -28,7 +28,7 @@ function App() {
             <Route path='/catalogue' element={<Catalogue/>}/>
             <Route path='/catalogue/create' element={<GameCreate/>}/>
             <Route path='/catalogue/:gameId/edit' element={<GameEdit/>}/>
-            <Route path='/catalogue/:gameId/details' element={<GameDetails email={email}/>}/>
+            <Route path='/catalogue/:gameId/details' element={<GameDetails email={authData.email}/>}/>
           </Routes>
         </main>
 
