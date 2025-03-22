@@ -1,6 +1,6 @@
 import { request } from "../utils/requester"
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 // 
@@ -39,4 +39,18 @@ export const useCreateGame = () => {
   return {
     create
   }
+}
+export const useGames = () =>{
+  const [games,setGames] = useState([]);
+  useEffect(() => {
+    request("GET",baseUrl).then(setGames)
+  },[])
+  return {games}
+}
+export const useGame = (gameId) => {
+  const [game,setGame] = useState([]);
+  useEffect(() => {
+    request("GET",`${baseUrl}/${gameId}`).then(setGame)
+  },[gameId])
+  return {game}
 }
