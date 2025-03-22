@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router"
-import gameService from "../../services/gameService";
 import CommentsCreate from "../commentsCreate/CommentsCreate";
 import CommentsShow from "../commentsShow/CommentShow";
 import commentService from "../../services/commentService";
 import { UserContext } from "../../contexts/UserContext";
-import { useGame } from "../../api/gameApi";
+import { useDeleteGame, useGame } from "../../api/gameApi";
 
 export default function GameDetails(){
     const navigate = useNavigate();
@@ -13,6 +12,7 @@ export default function GameDetails(){
     const [comments,setComments] = useState([]);
     const {gameId} = useParams();
     const {game} = useGame(gameId)
+    const {deleteGame} = useDeleteGame()
     useEffect(() => { 
         commentService.getAll(gameId).then(setComments)
     },[gameId])
@@ -21,7 +21,7 @@ export default function GameDetails(){
         if(!hasConfirm){
             return;
         }
-        await gameService.deleteGame(gameId)
+        await deleteGame(gameId)
         navigate('/catalogue')
     }
   return(
