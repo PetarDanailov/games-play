@@ -8,7 +8,7 @@ export const request = async (method, url, data,options = {}) => {
   if(data) {
     options = {
       ...options,
-      headers: { "Content-Type": "application/json"},
+      headers: {...options.headers,"Content-Type": "application/json"},
       body: JSON.stringify(data),
     }
   }
